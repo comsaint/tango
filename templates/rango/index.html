@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+{% load staticfiles %} <!-- load static resources, as defined in settings.STATICFILES_DIRS -->
+
+<html>
+
+    <head>
+        <title>Rango</title>
+    </head>
+
+    <body>
+        <h1>Rango says... hello world! </h1>
+        
+        {% if categories_mostlikes %}
+            </br><h3> Most liked categories</h3></br>
+            <ul>
+                {% for category in categories_mostlikes %}
+                <!-- Following line changed to add an HTML hyperlink, display name and link -->
+                <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+        
+        {% if categories_mostviews %}
+            </br><h3> Most viewed categories</h3></br>
+            <ul>
+                {% for category in categories_mostviews %}
+                <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+        
+        <a href="/rango/about/">About</a><br />
+        <img src="{% static "images/test_img.jpg" %}" alt="Picture of Yuka" /> <!-- New line -->
+    </body>
+
+</html>
