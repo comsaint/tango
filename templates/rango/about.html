@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+{% load staticfiles %} <!-- load static resources, as defined in settings.STATICFILES_DIRS -->
+
+<html>
+
+    <head>
+        <title>About Rango</title>
+    </head>
+
+    <body>
+        <h3>Rango says: here is the about page.</h3> <br/> 
+        <a href="/rango/">Index</a>
+        <img src="{% static "images/about_img.jpg" %}" alt="Picture of Sakuya" /> <!-- New line -->
+    </body>
+
+</html>
