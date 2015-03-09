@@ -5,12 +5,20 @@
 <html>
 
     <head>
-        <title>Rango</title>
+        <h1>Rango</h1>
+        {% if user.is_authenticated %}
+            <a href="/rango/restricted/">Restricted Page</a><br />
+            <a href="/rango/logout/">Logout</a><br />
+        {% else %}
+            <a href="/rango/register/">Register Here</a><br />
+            <a href="/rango/login/">Login</a><br />
+        {% endif %}
+
+            <a href="/rango/about/">About</a><br/>
+            <a href="/rango/add_category/">Add a New Category</a><br />
     </head>
 
     <body>
-        <h1>Rango says... hello world! </h1>
-        
         {% if categories_mostlikes %}
             </br><h3> Most liked categories</h3></br>
             <ul>
@@ -35,6 +43,8 @@
         {% endif %}
         
         <a href="/rango/about/">About</a><br />
+        <a href="/rango/add_category/">Add a New Category</a><br />
+
         <img src="{% static "images/test_img.jpg" %}" alt="Picture of Yuka" /> <!-- New line -->
     </body>
 

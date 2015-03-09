@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^rango/', include('rango.urls')), #look at module rango's urls.py
+    url(r'^rango/', include('rango.urls', namespace="rango")), #look at module rango's urls.py
 )
 
 # static media file deployment
