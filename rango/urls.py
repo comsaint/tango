@@ -11,4 +11,8 @@ urlpatterns = patterns('',
         # [\w\-]+  <==  one or more character(s) \w and hyphen \-
         # of alphanumeric characters (e.g. a-z, A-Z, or 0-9) and the hyphen(-)
         # before the trailing URL slash "/"
+        url(r'^register/$', views.register, name='register'),
+        url(r'^login/$', views.user_login, name='login'),
+        url(r'^restricted/', views.restricted, name='restricted'),
+        url(r'^logout/$', views.user_logout, name='logout'),
         )

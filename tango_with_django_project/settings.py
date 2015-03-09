@@ -45,7 +45,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media direct
 #          https://docs.djangoproject.com/en/1.7/ref/contrib/staticfiles/#static-file-development-view
 #          before deployment!!!!!!!
 #====================================================================
-
+LOGIN_URL = '/rango/login/' #ensures that the login_required() decorator will redirect any user not logged in to the URL /rango/login/
 
 
 

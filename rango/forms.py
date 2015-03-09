@@ -1,5 +1,7 @@
 from django import forms
 from rango.models import Page, Category
+from django.contrib.auth.models import User
+from rango.models import UserProfile #note User and UserProfile classes are imported from different locations
 
 # a form for the class 'Category'
 class CategoryForm(forms.ModelForm):
@@ -29,8 +31,8 @@ class PageForm(forms.ModelForm):
         Clean user's input URL - append 'http://' in front of the address if necessary
         Override clean() method in ModelForm class.
         """
-        cleaned_data = self.cleaned_data #Form data is obtained from the ModelForm dictionary attribute 'cleaned_data'
-        url = cleaned_data.get('url') #get the url field - we want to check this
+        cleaned_data = self.cleaned_data # Form data is obtained from the ModelForm dictionary attribute 'cleaned_data'
+        url = cleaned_data.get('url') # get the url field - we want to check this
 
         # If url is not empty and doesn't start with 'http://', prepend 'http://'.
         if url and not url.startswith('http://'):
@@ -53,3 +55,18 @@ class PageForm(forms.ModelForm):
         exclude = ('category',) #this specifies fields to be excluded
         #or specify the fields to include (i.e. not include the category field)
         #fields = ('title', 'url', 'views')
+    
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput()) 
+    #pw is a Charfield, but should be invisible.
+    #so a widget=forms.PasswordInput() is used.
+
+    class Meta:
+        # describes additional properties about the particular ModelForm class it belongs to
+        model = User
+        fields = ('username', 'email', 'password')
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('website', 'picture')
