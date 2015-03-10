@@ -25,6 +25,11 @@
                 {% for category in categories_mostlikes %}
                 <!-- Following line changed to add an HTML hyperlink, display name and link -->
                 <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+                <!-- Use relative path, pass the url template tag the name of the url/view and the slug -->
+                {% comment %}
+                {% url 'rango:category' category.slug as the_url%}
+                <li><a href="{{ the_url }}">{{ category.name }}</a></li>
+                {% endcomment %}
                 {% endfor %}
             </ul>
         {% else %}
