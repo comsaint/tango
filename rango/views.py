@@ -72,6 +72,7 @@ def about(request):
     #return HttpResponse(output)
     return render(request, 'rango/about.html')
 
+@login_required
 def add_category(request):
     """
     add_category() view function can handle three different scenarios:
@@ -102,7 +103,7 @@ def add_category(request):
     # Render the form with error messages (if any).
     return render(request, 'rango/add_category.html', {'form': form})
 
-
+@login_required
 def add_page(request, category_name_slug):
     # Note: the 'category_name_slug' field was passed by the ...(?P<category_name_slug>...) matching field in urls.py
     try:
