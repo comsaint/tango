@@ -1,17 +1,12 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-{% load staticfiles %} <!-- load static resources, as defined in settings.STATICFILES_DIRS -->
+{% load staticfiles %}
 
-<html>
+{% block title %}About Rango{% endblock %}
 
-    <head>
-        <title>About Rango</title>
-    </head>
+{% block body_block %}
 
-    <body>
         <h3>Rango says: here is the about page.</h3> <br/> 
-        <a href="/rango/">Index</a>
+        <a href="/rango/">Return to Index page</a> <br/> 
         <img src="{% static "images/about_img.jpg" %}" alt="Picture of Sakuya" /> <!-- New line -->
-    </body>
-
-</html>
+{% endblock %}
