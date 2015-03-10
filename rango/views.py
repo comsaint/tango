@@ -70,7 +70,7 @@ def index(request):
 def about(request):
     #output = r'Rango says here is the about page. <br/> <a href="/rango/">Index</a>'
     #return HttpResponse(output)
-    return render(request, 'rango/about.html')
+    return render(request, 'rango/about.html', {})
 
 @login_required
 def add_category(request):
