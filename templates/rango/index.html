@@ -2,37 +2,58 @@
 
 {% load staticfiles %}
 
-{% block title %}Index Page{% endblock %}
+{% block title %}Index{% endblock %}
 
     {% block body_block %}
+    {% if user.is_authenticated %}
+	    <div class="page-header">
+	        <h1>Rango says... hello {{ user.username }}!</h1>
+	{% else %}
+	        <h1>Rango says... hello world!</h1>
+	{% endif %}
+	    </div>
+	    
+	<div class="row placeholders">
+        <div class="col-xs-12 col-sm-6 placeholder">
         {% if categories_mostlikes %}
-            </br><h3> Most liked categories</h3></br>
-            <ul>
+        <div class="panel panel-primary">
+        <div class="panel-heading">
+            </br><h3 class="panel-title"> Most liked categories</h3></br>
+        </div>
+        </div>
+            <ul class="list-group">
                 {% for category in categories_mostlikes %}
                 <!-- Following line changed to add an HTML hyperlink, display name and link -->
                 {#<li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>#}
                 <!-- Use relative path, pass the url template tag the name of the url/view and the slug -->
                 {% url 'rango:category' category.slug as the_url%}
-                <li><a href="{{ the_url }}">{{ category.name }}</a></li>
+                <li class="list-group-item"><a href="{{ the_url }}">{{ category.name }}</a></li>
                 
                 {% endfor %}
             </ul>
         {% else %}
             <strong>There are no categories present.</strong>
         {% endif %}
-        
+        </div>
+        <div class="col-xs-12 col-sm-6 placeholder">
         {% if categories_mostviews %}
-            </br><h3> Most viewed categories</h3></br>
-            <ul>
+        <div class="panel panel-primary">
+        <div class="panel-heading">
+            </br><h3 class="panel-title"> Most viewed categories</h3></br>
+        </div>
+        </div>
+            
+            <ul class="list-group">
                 {% for category in categories_mostviews %}
                 {% url 'rango:category' category.slug as the_url%}
-                <li><a href="{{ the_url }}">{{ category.name }}</a></li>
+                <li class="list-group-item"><a href="{{ the_url }}">{{ category.name }}</a></li>
                 
                 {% endfor %}
             </ul>
         {% else %}
             <strong>There are no categories present.</strong>
         {% endif %}
-
+        </div>
+    </div>
         <img src="{% static "images/test_img.jpg" %}" alt="Picture of Yuka" /> <!-- New line -->
     {% endblock %}
