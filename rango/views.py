@@ -8,6 +8,8 @@ from rango.forms import CategoryForm, PageForm
 #from rango.forms import UserForm, UserProfileForm
 #from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from rango.bing_search.bing_search import run_query
+
 # Create your views here.
 
 def category(request, category_name_slug):
@@ -250,3 +252,15 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect('/rango/')
 """
+
+def search(request):
+
+    result_list = []
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+
+        if query:
+            # Run our Bing function to get the results list!
+            result_list = run_query(query)
+
+    return render(request, 'rango/search.html', {'result_list': result_list})

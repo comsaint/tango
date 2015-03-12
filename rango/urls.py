@@ -8,6 +8,7 @@ urlpatterns = patterns('',
         url(r'^add_category/$', views.add_category, name='add_category'),
         url(r'^category/(?P<category_name_slug>[\w\-]+)/$', views.category, name='category'),
         url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page/$', views.add_page, name='add_page'),
+        url(r'^search/', views.search, name='search'),
         # The Regex "(?P<category_name_slug>[\w\-]+)" matches any sequences
         # [\w\-]+  <==  one or more character(s) \w and hyphen \-
         # of alphanumeric characters (e.g. a-z, A-Z, or 0-9) and the hyphen(-)
